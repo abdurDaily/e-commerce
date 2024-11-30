@@ -9,7 +9,12 @@
 	<link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png"/>
 	<!--plugins-->
 	<link href="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
-	<link href="{{ asset('assets/plugins/simplebar/css/simplebar.css" rel="stylesheet') }}" />
+	<link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
+
+
+	{{-- custom css --}}
+    @stack('backend_css')
+
 	<link href="{{ asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }} " rel="stylesheet" />
 	<link href="{{ asset('assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet"/>
 	<link href="{{ asset('assets/css/pace.min.css') }}" rel="stylesheet"/>
@@ -35,7 +40,7 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+					<img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
 					<h4 class="logo-text">Nikon</h4>
@@ -45,145 +50,195 @@
 			 </div>
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-home-alt'></i>
-						</div>
-						<div class="menu-title">Dashboard</div>
-					</a>
-					<ul>
-						<li> <a href="index.html"><i class='bx bx-radio-circle'></i>Default</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-category"></i>
-						</div>
-						<div class="menu-title">Application</div>
-					</a>
-					<ul>
-						<li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Email</a>
-						</li>
-						<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
-						</li>
-						<li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>File Manager</a>
-						</li>
-						<li> <a href="app-contact-list.html"><i class='bx bx-radio-circle'></i>Contatcs</a>
-						</li>
-						<li> <a href="app-to-do.html"><i class='bx bx-radio-circle'></i>Todo List</a>
-						</li>
-						<li> <a href="app-invoice.html"><i class='bx bx-radio-circle'></i>Invoice</a>
-						</li>
-						<li> <a href="app-fullcalender.html"><i class='bx bx-radio-circle'></i>Calendar</a>
-						</li>
-					</ul>
-				</li>
-				<li class="menu-label">UI Elements</li>
-				<li>
-					<a href="widgets.html">
-						<div class="parent-icon"><i class='bx bx-cookie'></i>
-						</div>
-						<div class="menu-title">Widgets</div>
-					</a>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-cart'></i>
-						</div>
-						<div class="menu-title">eCommerce</div>
-					</a>
-					<ul>
-						<li> <a href="ecommerce-products.html"><i class='bx bx-radio-circle'></i>Products</a>
-						</li>
-						<li> <a href="ecommerce-products-details.html"><i class='bx bx-radio-circle'></i>Product Details</a>
-						</li>
-						<li> <a href="ecommerce-add-new-products.html"><i class='bx bx-radio-circle'></i>Add New Products</a>
-						</li>
-						<li> <a href="ecommerce-orders.html"><i class='bx bx-radio-circle'></i>Orders</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
-						</div>
-						<div class="menu-title">Components</div>
-					</a>
-					<ul>
-						<li> <a href="component-alerts.html"><i class='bx bx-radio-circle'></i>Alerts</a>
-						</li>
-						<li> <a href="component-accordions.html"><i class='bx bx-radio-circle'></i>Accordions</a>
-						</li>
-						<li> <a href="component-badges.html"><i class='bx bx-radio-circle'></i>Badges</a>
-						</li>
-						<li> <a href="component-buttons.html"><i class='bx bx-radio-circle'></i>Buttons</a>
-						</li>
-						<li> <a href="component-cards.html"><i class='bx bx-radio-circle'></i>Cards</a>
-						</li>
-						<li> <a href="component-carousels.html"><i class='bx bx-radio-circle'></i>Carousels</a>
-						</li>
-						<li> <a href="component-list-groups.html"><i class='bx bx-radio-circle'></i>List Groups</a>
-						</li>
-						<li> <a href="component-media-object.html"><i class='bx bx-radio-circle'></i>Media Objects</a>
-						</li>
-						<li> <a href="component-modals.html"><i class='bx bx-radio-circle'></i>Modals</a>
-						</li>
-						<li> <a href="component-navs-tabs.html"><i class='bx bx-radio-circle'></i>Navs & Tabs</a>
-						</li>
-						<li> <a href="component-navbar.html"><i class='bx bx-radio-circle'></i>Navbar</a>
-						</li>
-						<li> <a href="component-paginations.html"><i class='bx bx-radio-circle'></i>Pagination</a>
-						</li>
-						<li> <a href="component-popovers-tooltips.html"><i class='bx bx-radio-circle'></i>Popovers & Tooltips</a>
-						</li>
-						<li> <a href="component-progress-bars.html"><i class='bx bx-radio-circle'></i>Progress</a>
-						</li>
-						<li> <a href="component-spinners.html"><i class='bx bx-radio-circle'></i>Spinners</a>
-						</li>
-						<li> <a href="component-notifications.html"><i class='bx bx-radio-circle'></i>Notifications</a>
-						</li>
-						<li> <a href="component-avtars-chips.html"><i class='bx bx-radio-circle'></i>Avatrs & Chips</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class="bx bx-repeat"></i>
-						</div>
-						<div class="menu-title">Content</div>
-					</a>
-					<ul>
-						<li> <a href="content-grid-system.html"><i class='bx bx-radio-circle'></i>Grid System</a>
-						</li>
-						<li> <a href="content-typography.html"><i class='bx bx-radio-circle'></i>Typography</a>
-						</li>
-						<li> <a href="content-text-utilities.html"><i class='bx bx-radio-circle'></i>Text Utilities</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"> <i class="bx bx-donate-blood"></i>
-						</div>
-						<div class="menu-title">Icons</div>
-					</a>
-					<ul>
-						<li> <a href="icons-line-icons.html"><i class='bx bx-radio-circle'></i>Line Icons</a>
-						</li>
-						<li> <a href="icons-boxicons.html"><i class='bx bx-radio-circle'></i>Boxicons</a>
-						</li>
-						<li> <a href="icons-feather-icons.html"><i class='bx bx-radio-circle'></i>Feather Icons</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="form-froala-editor.html">
-						<div class="parent-icon"><i class='bx bx-code-alt'></i>
-						</div>
-						<div class="menu-title">Froala Editor</div>
-					</a>
-				</li>
+
+				@canany([
+					'user_create',
+					'user_edit',
+					'user_delete',
+					'user_view',
+					'user_roles_assign',
+					'user_roles_revoke',
+
+
+					'products_create',
+					'products_edit',
+					'products_delete',
+					'products_view',
+
+
+					'categories_create',
+					'categories_edit',
+					'categories_delete',
+					'categories_view',
+
+
+					'discounts_create',
+					'discounts_edit',
+					'discounts_delete',
+					'discounts_view',
+
+
+					'roles_create',
+					'roles_edit',
+					'roles_delete',
+					'roles_view',
+				])
+					<li>
+						<a href="javascript:;" class="has-arrow">
+							<div class="parent-icon"><i class='bx bx-home-alt'></i>
+							</div>
+							<div class="menu-title">Dashboard</div>
+						</a>
+						<ul>
+							<li> <a href="index.html"><i class='bx bx-radio-circle'></i>Default</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;" class="has-arrow">
+							<div class="parent-icon"><i class="bx bx-category"></i>
+							</div>
+							<div class="menu-title">Role Create</div>
+						</a>
+						<ul>
+							<li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Email</a>
+							</li>
+							<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
+							</li>
+							<li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>File Manager</a>
+							</li>
+							<li> <a href="app-contact-list.html"><i class='bx bx-radio-circle'></i>Contatcs</a>
+							</li>
+							<li> <a href="app-to-do.html"><i class='bx bx-radio-circle'></i>Todo List</a>
+							</li>
+							<li> <a href="app-invoice.html"><i class='bx bx-radio-circle'></i>Invoice</a>
+							</li>
+							<li> <a href="app-fullcalender.html"><i class='bx bx-radio-circle'></i>Calendar</a>
+							</li>
+						</ul>
+					</li>
+				@endcanany
+				
+				
+
+				@canany([
+					'products_create',
+					'products_edit',
+					'products_delete',
+					'products_view'
+				])
+					<li class="menu-label">Product</li>
+					<li>
+						<a href="widgets.html">
+							<div class="parent-icon"><i class='bx bx-cookie'></i>
+							</div>
+							<div class="menu-title">Widgets</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;" class="has-arrow">
+							<div class="parent-icon"><i class='bx bx-cart'></i>
+							</div>
+							<div class="menu-title">eCommerce</div>
+						</a>
+						<ul>
+							<li> <a href="ecommerce-products.html"><i class='bx bx-radio-circle'></i>Products</a>
+							</li>
+							<li> <a href="ecommerce-products-details.html"><i class='bx bx-radio-circle'></i>Product Details</a>
+							</li>
+							<li> <a href="ecommerce-add-new-products.html"><i class='bx bx-radio-circle'></i>Add New Products</a>
+							</li>
+							<li> <a href="ecommerce-orders.html"><i class='bx bx-radio-circle'></i>Orders</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="has-arrow" href="javascript:;">
+							<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+							</div>
+							<div class="menu-title">Components</div>
+						</a>
+						<ul>
+							<li> <a href="component-alerts.html"><i class='bx bx-radio-circle'></i>Alerts</a>
+							</li>
+							<li> <a href="component-accordions.html"><i class='bx bx-radio-circle'></i>Accordions</a>
+							</li>
+							<li> <a href="component-badges.html"><i class='bx bx-radio-circle'></i>Badges</a>
+							</li>
+							<li> <a href="component-buttons.html"><i class='bx bx-radio-circle'></i>Buttons</a>
+							</li>
+							<li> <a href="component-cards.html"><i class='bx bx-radio-circle'></i>Cards</a>
+							</li>
+							<li> <a href="component-carousels.html"><i class='bx bx-radio-circle'></i>Carousels</a>
+							</li>
+							<li> <a href="component-list-groups.html"><i class='bx bx-radio-circle'></i>List Groups</a>
+							</li>
+							<li> <a href="component-media-object.html"><i class='bx bx-radio-circle'></i>Media Objects</a>
+							</li>
+							<li> <a href="component-modals.html"><i class='bx bx-radio-circle'></i>Modals</a>
+							</li>
+							<li> <a href="component-navs-tabs.html"><i class='bx bx-radio-circle'></i>Navs & Tabs</a>
+							</li>
+							<li> <a href="component-navbar.html"><i class='bx bx-radio-circle'></i>Navbar</a>
+							</li>
+							<li> <a href="component-paginations.html"><i class='bx bx-radio-circle'></i>Pagination</a>
+							</li>
+							<li> <a href="component-popovers-tooltips.html"><i class='bx bx-radio-circle'></i>Popovers & Tooltips</a>
+							</li>
+							<li> <a href="component-progress-bars.html"><i class='bx bx-radio-circle'></i>Progress</a>
+							</li>
+							<li> <a href="component-spinners.html"><i class='bx bx-radio-circle'></i>Spinners</a>
+							</li>
+							<li> <a href="component-notifications.html"><i class='bx bx-radio-circle'></i>Notifications</a>
+							</li>
+							<li> <a href="component-avtars-chips.html"><i class='bx bx-radio-circle'></i>Avatrs & Chips</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="has-arrow" href="javascript:;">
+							<div class="parent-icon"><i class="bx bx-repeat"></i>
+							</div>
+							<div class="menu-title">Content</div>
+						</a>
+						<ul>
+							<li> <a href="content-grid-system.html"><i class='bx bx-radio-circle'></i>Grid System</a>
+							</li>
+							<li> <a href="content-typography.html"><i class='bx bx-radio-circle'></i>Typography</a>
+							</li>
+							<li> <a href="content-text-utilities.html"><i class='bx bx-radio-circle'></i>Text Utilities</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="has-arrow" href="javascript:;">
+							<div class="parent-icon"> <i class="bx bx-donate-blood"></i>
+							</div>
+							<div class="menu-title">Icons</div>
+						</a>
+						<ul>
+							<li> <a href="icons-line-icons.html"><i class='bx bx-radio-circle'></i>Line Icons</a>
+							</li>
+							<li> <a href="icons-boxicons.html"><i class='bx bx-radio-circle'></i>Boxicons</a>
+							</li>
+							<li> <a href="icons-feather-icons.html"><i class='bx bx-radio-circle'></i>Feather Icons</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="form-froala-editor.html">
+							<div class="parent-icon"><i class='bx bx-code-alt'></i>
+							</div>
+							<div class="menu-title">Froala Editor</div>
+						</a>
+					</li>
+				@endcanany
+      
+			
+
+
+
+
 				<li class="menu-label">Forms & Tables</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
@@ -372,6 +427,9 @@
 					</a>
 				</li>
 			</ul>
+
+
+
 			<!--end navigation-->
 		</div>
 		<!--end sidebar wrapper -->
@@ -395,24 +453,10 @@
 								</a>
 							</li>
 							<li class="nav-item dropdown dropdown-laungauge d-none d-sm-flex">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="assets/images/county/02.png" width="22" alt="">
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="{{ asset('assets/images/county/02.png') }}" width="22" alt="">
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end">
-									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/01.png" width="20" alt=""><span class="ms-2">English</span></a>
-									</li>
-									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/02.png" width="20" alt=""><span class="ms-2">Catalan</span></a>
-									</li>
-									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/03.png" width="20" alt=""><span class="ms-2">French</span></a>
-									</li>
-									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/04.png" width="20" alt=""><span class="ms-2">Belize</span></a>
-									</li>
-									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/05.png" width="20" alt=""><span class="ms-2">Colombia</span></a>
-									</li>
-									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/06.png" width="20" alt=""><span class="ms-2">Spanish</span></a>
-									</li>
-									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/07.png" width="20" alt=""><span class="ms-2">Georgian</span></a>
-									</li>
-									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/08.png" width="20" alt=""><span class="ms-2">Hindi</span></a>
+									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="{{ asset('assets/images/county/01.png') }}" width="20" alt=""><span class="ms-2">English</span></a>
 									</li>
 								</ul>
 							</li>
@@ -430,7 +474,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/slack.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/slack.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Slack</p>
@@ -442,7 +486,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/behance.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/behance.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Behance</p>
@@ -454,7 +498,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												<img src="assets/images/app/google-drive.png" width="30" alt="">
+												<img src="{{ asset('assets/images/app/google-drive.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Dribble</p>
@@ -466,7 +510,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/outlook.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/outlook.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Outlook</p>
@@ -478,7 +522,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/github.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/github.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">GitHub</p>
@@ -490,7 +534,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/stack-overflow.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/stack-overflow.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Stack</p>
@@ -502,7 +546,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/figma.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/figma.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Stack</p>
@@ -514,7 +558,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/twitter.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/twitter.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Twitter</p>
@@ -526,7 +570,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/google-calendar.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/google-calendar.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Calendar</p>
@@ -538,7 +582,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/spotify.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/spotify.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Spotify</p>
@@ -550,7 +594,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/google-photos.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/google-photos.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Photos</p>
@@ -562,7 +606,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/pinterest.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/pinterest.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Photos</p>
@@ -574,7 +618,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/linkedin.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/linkedin') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">linkedin</p>
@@ -586,7 +630,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/dribble.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/dribble') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Dribble</p>
@@ -598,7 +642,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/youtube.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/youtube') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">YouTube</p>
@@ -610,7 +654,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/google.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/google') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">News</p>
@@ -622,7 +666,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/vue.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/vue') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Vue</p>
@@ -634,7 +678,7 @@
 										  <a href="javascript:;">
 											<div class="app-box text-center">
 											  <div class="app-icon">
-												  <img src="assets/images/app/safari.png" width="30" alt="">
+												  <img src="{{ asset('assets/images/app/safari.png') }}" width="30" alt="">
 											  </div>
 											  <div class="app-name">
 												  <p class="mb-0 mt-1">Safari</p>
@@ -664,7 +708,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
+													<img src="{{ asset('assets/images/avatars/avatar-1') }}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Daisy Anderson<span class="msg-time float-end">5 sec
@@ -687,7 +731,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-2.png" class="msg-avatar" alt="user avatar">
+													<img src="{{ asset('assets/images/avatars/avatar-2') }}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
@@ -699,7 +743,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="notify bg-light-success text-success">
-													<img src="assets/images/app/outlook.png" width="25" alt="user avatar">
+													<img src="{{ asset('assets/images/app/outlook') }}" width="25" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Account Created<span class="msg-time float-end">28 min
@@ -722,7 +766,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-4.png" class="msg-avatar" alt="user avatar">
+													<img src="{{ asset('assets/images/avatars/avatar-4') }}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
@@ -745,7 +789,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="notify bg-light-primary">
-													<img src="assets/images/app/github.png" width="25" alt="user avatar">
+													<img src="{{ asset('assets/images/app/github') }}" width="25" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">New 24 authors<span class="msg-time float-end">1 day
@@ -757,7 +801,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-8.png" class="msg-avatar" alt="user avatar">
+													<img src="{{ asset('assets/images/avatars/avatar-8') }}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
@@ -790,7 +834,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/11.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/11') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -808,7 +852,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/02.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/02') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -826,7 +870,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/03.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/03') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -844,7 +888,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/04.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/04') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -862,7 +906,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/05.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/05') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -880,7 +924,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/06.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/06') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -898,7 +942,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/07.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/07') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -916,7 +960,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/08.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/08') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -934,7 +978,7 @@
 											<div class="d-flex align-items-center gap-3">
 												<div class="position-relative">
 													<div class="cart-product rounded-circle bg-light">
-														<img src="assets/images/products/09.png" class="" alt="product image">
+														<img src="{{ asset('assets/images/products/09') }}" class="" alt="product image">
 													</div>
 												</div>
 												<div class="flex-grow-1">
@@ -964,7 +1008,7 @@
 					</div>
 					<div class="user-box dropdown px-3">
 						<a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="index.html#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+							<img src="{{ asset('assets/images/avatars/avatar-2') }}" class="user-img" alt="user avatar">
 							<div class="user-info">
 								<p class="user-name mb-0">Pauline Seitz</p>
 								<p class="designattion mb-0">Web Designer</p>
@@ -1167,6 +1211,7 @@
 	<!-- Bootstrap JS -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 	<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+	@stack('backend_js')
 	<script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
 	<script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
 	<script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
@@ -1176,9 +1221,11 @@
 	<script src="{{ asset('assets/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
 	<script src="{{ asset('assets/js/index.js') }}"></script>
 	<script src="{{ asset('assets/js/app.js') }}"></script>
+	
 	<script>
 		new PerfectScrollbar('.dashboard-top-countries');
-	</script>
-</body>
-
+		</script>
+		
+		{{-- custom js --}}
+	</body>
 </html>

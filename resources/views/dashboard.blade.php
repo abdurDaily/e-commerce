@@ -1,8 +1,8 @@
 
 @extends('backend.layout')
 @section('backend_contains')
-   @canany(['user_create'])
-       <h1>Hello...</h1>
-   @endcanany
+   
+  <div class="container">
    <h1>nothing found!</h1>
+  </div>
 @endsection

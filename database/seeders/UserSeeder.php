@@ -13,10 +13,27 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = new User();
-        $users->name = 'abdur';
-        $users->email = 'abdur@gmail.com';
-        $users->password = bcrypt('password');
-        $users->save();
+
+        $userData = [
+            [
+                'name' => 'abdur',
+                'email' => 'abdur@gmail.com',
+                'password' => bcrypt('password'),
+            ],
+            [
+                'name' => 'test',
+                'email' => 'test@gmail.com',
+                'password' => bcrypt('password'),
+            ],
+        ];
+
+
+        foreach($userData as $user){
+            $userData = new User();
+            $userData->name = $user['name'];
+            $userData->email = $user['email'];
+            $userData->password = $user['password'];
+            $userData->save();
+        }
     }
 }
