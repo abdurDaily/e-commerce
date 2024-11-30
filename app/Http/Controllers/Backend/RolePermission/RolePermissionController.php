@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend\RolePermission;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
+use Yajra\DataTables\DataTables;
 
 class RolePermissionController extends Controller
 {
@@ -27,16 +27,23 @@ class RolePermissionController extends Controller
     }
 
 
-    //**STORE A NEW ROLE */
-    public function storeRole(Request $request)
-    {
+//**STORE A NEW ROLE */
+public function storeRole(Request $request)
+{
+    // Validate the incoming request
+    $request->validate([
+        'role_name' => 'required|string|max:255|unique:roles,name', // Ensure role_name is unique
+    ]);
 
-        $roleStore = new Role();
-        $roleStore->name = $request->role_name;
-        $roleStore->guard_name = 'web';
-        $roleStore->save();
-        return back();
-    }
+    // Create a new role
+    $roleStore = new Role();
+    $roleStore->name = $request->role_name;
+    $roleStore->guard_name = 'web';
+    $roleStore->save();
+
+    // Return a JSON response
+    return response()->json(['success' => true, 'message' => 'Role added successfully!', 'role' => $roleStore]);
+}
 
 
 
