@@ -247,7 +247,7 @@
 						<div class="menu-title">Forms</div>
 					</a>
 					<ul>
-						<li> <a href="form-elements.html"><i class='bx bx-radio-circle'></i>Form Elements</a>
+						<li> <a href="{{ route('admin.category.create') }}"><i class='bx bx-radio-circle'></i>Category</a>
 						</li>
 						<li> <a href="form-input-group.html"><i class='bx bx-radio-circle'></i>Input Groups</a>
 						</li>
