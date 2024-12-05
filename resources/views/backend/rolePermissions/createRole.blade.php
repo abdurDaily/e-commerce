@@ -38,6 +38,13 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 13bc54fbbef1fc69d59015e40f645d73d55b5479
     <!-- Modal -->
     <div class="modal fade" id="role" tabindex="-1" aria-labelledby="roleLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -47,11 +54,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+<<<<<<< HEAD
                     <form action="{{ route('admin.role.store.role') }}" method="post">
                         @csrf
                         <input name="role_name" type="text" placeholder="role name" class="form-control role_name">
                         <button class="btn btn-primary w-100 mt-3">submit</button>
                     </form>
+=======
+                    <form id="roleForm">
+                        @csrf
+                        <input name="role_name" type="text" placeholder="role name" class="form-control input" required>
+
+                        <button class="btn btn-primary w-100 mt-3">submit</button>
+                    </form>
+
+                    <div id="responseMessage"></div> <!-- Add this line to display messages -->
+>>>>>>> 13bc54fbbef1fc69d59015e40f645d73d55b5479
                 </div>
             </div>
         </div>
@@ -63,11 +81,15 @@
         <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
         <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<<<<<<< HEAD
 
         {{-- for table --}}
+=======
+>>>>>>> 13bc54fbbef1fc69d59015e40f645d73d55b5479
         <script>
             $(document).ready(function() {
-                $('#users-table').DataTable({
+                // Initialize DataTable
+                var table = $('#users-table').DataTable({
                     processing: true,
                     serverSide: true,
                     ajax: '{{ route('admin.role.get') }}', // Adjust the route as needed
@@ -84,7 +106,6 @@
                         {
                             data: 'permissions', // Assuming this contains the permissions data
                             render: function(data, type, row) {
-                                // Check if permissions data is empty
                                 if (data && data.trim() !== '') {
                                     let allData = data.split(', ').map(function(permission) {
                                         return `<span class="badge m-1 bg-primary badge-primary">${permission}</span>`;
@@ -99,23 +120,25 @@
                             data: null, // Use null for custom rendering
                             render: function(data, type, row) {
                                 return `
-                                    <div class="d-flex justify-content-between w-50">
-                                        <a href="" data-id="${row.id}"> <span><iconify-icon icon="mingcute:pen-line" width="20" height="20"></iconify-icon></span> </a>
-                                        <a class="delete" href="" data-id="${row.id}"> <span><iconify-icon icon="ic:outline-delete" width="20" height="20"></iconify-icon></span> </a>
-                                        <a href="" data-id="${row.id}"> <span><iconify-icon icon="mdi:key-outline" width="20" height="20"></iconify-icon></span> </a>
-                                    </div>
-                                `;
+                            <div class="d-flex justify-content-between w-50">
+                                <a href="" data-id="${row.id}"> <span><iconify-icon icon="mingcute:pen-line" width="20" height="20"></iconify-icon></span> </a>
+                                <a class="delete" href="" data-id="${row.id}"> <span><iconify-icon icon="ic:outline-delete" width="20" height="20"></iconify-icon></span> </a>
+                                <a href="" data-id="${row.id}"> <span><iconify-icon icon="mdi:key-outline" width="20" height="20"></iconify-icon></span> </a>
+                            </div>
+                        `;
                             }
                         },
                     ],
                     order: [
                         [1, 'asc']
+<<<<<<< HEAD
                     ], // Sort by the second column (name) in ascending order, adjust if necessary
+=======
+                    ], // Sort by the second column (name) in ascending order
+>>>>>>> 13bc54fbbef1fc69d59015e40f645d73d55b5479
                 });
-            });
-        </script>
-        {{-- for table end --}}
 
+<<<<<<< HEAD
 
 
         {{-- DELETE TR --}}
@@ -154,11 +177,102 @@
                         error: function(xhr) {
                             alert('Error deleting role: ' + xhr
                             .responseText); // Handle errors if needed
+=======
+                // Handle the form submission for adding a new role
+                $('#roleForm').on('submit', function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('admin.role.store.role') }}",
+                        data: $(this).serialize(),
+                        success: function(data) {
+                            if (data.success) {
+                                // Add the new role to the DataTable
+                                table.row.add({
+                                    id: data.role.id, // Assuming the ID is returned
+                                    name: data.role.name,
+                                    permissions: '', // Adjust this if you have permissions to show
+                                }).draw(); // Update the DataTable
+
+                                $('#roleForm')[0].reset(); // Reset the form
+
+                                // Show success message as a toast
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: "top-end",
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.onmouseenter = Swal.stopTimer;
+                                        toast.onmouseleave = Swal.resumeTimer;
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: "success",
+                                    title: data.message
+                                });
+
+                                // Hide the modal
+                                $('#role').modal('hide');
+                            } else if (data.error) {
+                                // Show an alert for duplicate entry
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Duplicate Entry',
+                                    text: data.message ||
+                                        'This role already exists. Please choose a different name.',
+                                    confirmButtonText: 'Okay'
+                                });
+                            }
+                        },
+                        error: function(xhr) {
+                            // Handle other types of errors if necessary
+                            console.error('An error occurred:', xhr);
+                        }
+                    });
+                });
+
+
+                // Handle delete action
+                $('#users-table').on('click', '.delete', function(e) {
+                    e.preventDefault();
+                    const roleId = $(this).attr('data-id'); // Get the dynamic ID from the clicked element
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{ route('admin.role.delete.role', '') }}/" +
+                            roleId, // Use the dynamic ID here
+                        success: function(data) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "warning",
+                                title: data.message
+                            });
+                            table.ajax.reload(); // Reload the DataTable after deletion
+                        },
+                        error: function(xhr) {
+                            alert('Error deleting role: ' + xhr
+                                .responseText); // Handle errors if needed
+>>>>>>> 13bc54fbbef1fc69d59015e40f645d73d55b5479
                         }
                     });
                 });
             });
         </script>
+<<<<<<< HEAD
         {{-- DELETE TR END --}}
+=======
+>>>>>>> 13bc54fbbef1fc69d59015e40f645d73d55b5479
     @endpush
 @endsection
