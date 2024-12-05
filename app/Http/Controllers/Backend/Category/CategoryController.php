@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend\Category;
 
-use App\Models\Category;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use PhpParser\Node\Stmt\Return_;
 
 class CategoryController extends Controller
 {
@@ -18,10 +18,16 @@ class CategoryController extends Controller
 
     //STORE CATEGORY
     public function store(Request $request){
+        
+        $request->validate([
+            'category_name' => 'required|unique:categories,category_name',
+        ]);
+        
         $storeCategory = new Category();
         $storeCategory->category_name = $request->category_name;
-        $storeCategory->category_slug = Str::slug($request->category_name);
+        $storeCategory->category_slug = $request->category_name .'-'. Str::slug($request->category_name).'-'. uniqid();
         $storeCategory->parent_name = $request->parent_name;
         $storeCategory->save();
+        return response()->json(['message' => 'successfully new data created', 'status' => 'created!']);
     }
 }
