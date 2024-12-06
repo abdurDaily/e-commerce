@@ -19,5 +19,7 @@ Route::prefix('role')->name('role.')->group(function () {
 Route::prefix('category')->name('category.')->group(function(){
   Route::get('/create', [CategoryController::class, 'create'])->name('create');
   Route::post('/store', [CategoryController::class, 'store'])->name('store');
+  Route::get('/list', [CategoryController::class, 'list'])->name('list');
+  Route::get('/get-list', [CategoryController::class, 'processList'])->name('process');
 });
 /**CATEGORY END */
