@@ -21,5 +21,8 @@ Route::prefix('category')->name('category.')->group(function(){
   Route::post('/store', [CategoryController::class, 'store'])->name('store');
   Route::get('/list', [CategoryController::class, 'list'])->name('list');
   Route::get('/get-list', [CategoryController::class, 'processList'])->name('process');
+  Route::get('/status', [CategoryController::class, 'categoryStatus'])->name('status');
+  Route::get('/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('delete');
+  Route::get('/edit/{id}', [CategoryController::class, 'editDelete'])->name('edit');
 });
 /**CATEGORY END */

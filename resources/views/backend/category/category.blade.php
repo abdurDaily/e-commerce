@@ -54,7 +54,7 @@
         <div class="container">
             <div class="header d-flex justify-content-between align-items-center">
                 <span>{{ request()->path() }}</span>
-                <a href="" class="btn btn-primary">view all</a>
+                <a href="{{ route('admin.category.list') }}" class="btn btn-primary">view all</a>
             </div>
 
             <div class="col-xl-6 mx-auto mt-3 card p-4 shadow-sm">
@@ -77,9 +77,9 @@
 
                     <div class="img_placegolder d-flex justify-content-center my-3">
                         <label for="category_img" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{ asset('assets/images/category_image.png') }}" alt="">
+                            <img class="img-fluid" src="{{  asset('assets/images/category_image.png')  }}"  alt="">
                         </label>
-                        <input type="file" hidden id="category_img" name="category_img">
+                        <input type="file" accept=".png, .jpg, .gif, .jpeg, .webp" hidden id="category_img" name="category_img">
                     </div>
 
 
@@ -136,37 +136,42 @@
 
         // FOR STORE CATEGORY DATA....
         $(function() {
-            $('#category_submit').on('submit', function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ route('admin.category.store') }}',
-                    data: $(this).serialize(),
-                    success: function(res) {
-                        $('.error-message').html('');
-                        $('#parent_name').html('');
+    $('#category_submit').on('submit', function(e) {
+        e.preventDefault();
+        
+        // Create a FormData object from the form
+        let formData = new FormData(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('admin.category.store') }}',
+            data: formData,
+            contentType: false, // Important for file uploads
+            processData: false, // Important for file uploads
+            success: function(res) {
+                $('.error-message').html('');
+                $('#parent_name').html('');
 
-                        // Show SweetAlert notification
-                        Swal.fire({
-                            title: res.status,
-                            text: res.message,
-                            icon: 'success',
-                            confirmButtonText: 'cancel',
-                            timer: 2000
-                        }).then(() => {
-                            // Redirect to a specific URL after the alert is closed
-                            window.location.href = '{{ route('admin.category.list') }}';
-                        });
-                        $('#category_submit').trigger('reset'); // Reset the form fields
-                    },
-                    error: function(xhr) {
-                        // Handle validation errors
-                        var errors = xhr.responseJSON;
-                        $('.error-message').html(errors.errors
-                            .category_name); // Display the error message
-                    }
+                // Show SweetAlert notification
+                Swal.fire({
+                    title: res.status,
+                    text: res.message,
+                    icon: 'success',
+                    confirmButtonText: 'cancel',
+                    timer: 2000
+                }).then(() => {
+                    // Redirect to a specific URL after the alert is closed
+                    window.location.href = '{{ route('admin.category.list') }}';
                 });
-            });
+                $('#category_submit').trigger('reset'); // Reset the form fields
+            },
+            error: function(xhr) {
+                // Handle validation errors
+                var errors = xhr.responseJSON;
+                $('.error-message').html(errors.errors.category_name); // Display the error message
+            }
         });
+    });
+});
     </script>
 @endpush
