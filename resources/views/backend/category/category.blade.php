@@ -15,7 +15,7 @@
                 cursor: pointer;
                 float: right;
                 font-weight: bold;
-                background: red;
+                background: #6370DE;
                 position: absolute;
                 right: 4%;
                 top: 5px;
@@ -107,10 +107,9 @@
                 placeholder: "Select a parent category",
                 allowClear: true,
                 ajax: {
-                    url: `{{ route('admin.category.process') }}`,
                     dataType: 'json',
+                    url: `{{ route('admin.category.process') }}`,
                     processResults: function(data) {
-                        // Transforms the top-level key of the response object from 'items' to 'results'
                         return {
                             results: data
                         }
@@ -130,7 +129,8 @@
         });
 
 
-
+        // Transforming response data
+        // Request parameters
 
 
 
@@ -145,18 +145,25 @@
                     success: function(res) {
                         $('.error-message').html('');
                         $('#parent_name').html('');
+
+                        // Show SweetAlert notification
                         Swal.fire({
                             title: res.status,
                             text: res.message,
                             icon: 'success',
                             confirmButtonText: 'cancel',
-                            timer: 3000
+                            timer: 2000
+                        }).then(() => {
+                            // Redirect to a specific URL after the alert is closed
+                            window.location.href = '{{ route('admin.category.list') }}';
                         });
-                        $('#category_submit').trigger('reset');
+                        $('#category_submit').trigger('reset'); // Reset the form fields
                     },
                     error: function(xhr) {
+                        // Handle validation errors
                         var errors = xhr.responseJSON;
-                        $('.error-message').html(errors.errors.category_name);
+                        $('.error-message').html(errors.errors
+                            .category_name); // Display the error message
                     }
                 });
             });

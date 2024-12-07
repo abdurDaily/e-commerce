@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Backend\Category;
-
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use PhpParser\Node\Stmt\Return_;
 
 class CategoryController extends Controller
 {
@@ -17,6 +15,7 @@ class CategoryController extends Controller
         return view('backend.category.category', compact('allCategorys'));
     }
 
+    // SELECT2 AJAX SEND
     function processList(Request $request)
     {
         $data = Category::query()->latest();
@@ -26,7 +25,7 @@ class CategoryController extends Controller
             $data->whereLike('category_name', "%$search%");
         }
 
-        $res = $data->limit(3)->get();
+        $res = $data->limit(5)->get();
 
         $categories = [];
 
@@ -48,21 +47,23 @@ class CategoryController extends Controller
             'category_name' => 'required|string|max:255|unique:categories,category_name',
         ]);
 
-            
-
-
         $storeCategory = new Category();
         $storeCategory->category_name = $request->category_name;
         $storeCategory->category_slug = $request->category_name . '-' . Str::slug($request->category_name) . '-' . uniqid();
         $storeCategory->parent_name = $request->parent_name;
         $storeCategory->save();
-        return response()->json(['message' => 'successfully new data created', 'status' => 'created!']);
+
+        // Return a JSON response with a success message
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully created new category!'
+        ]);
     }
 
     // LIST
     public function list()
     {
-        $categories = Category::get();
+        $categories = Category::latest()->get();
         return view('backend.category.listCategory', compact('categories'));
     }
 }

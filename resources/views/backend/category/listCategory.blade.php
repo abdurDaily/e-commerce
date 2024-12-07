@@ -25,6 +25,11 @@
                         <td> {{ ++$key }} </td>
                         <td> {{ $category->category_name }} </td>
                         <td> {{ $category->category_img }} </td>
+                        <td> {{ $category->status }} </td>
+                        <td> 
+                            <a href="">Edit</a> / 
+                            <a href="">Delete</a>
+                        </td>
                     </tr>
                 @empty
                     <tr>
