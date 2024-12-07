@@ -112,6 +112,7 @@ class CategoryController extends Controller
 
     //EDIT CATEGORY...
     public function editDelete(Request $request){
+        // dd($request->all());
         $category = Category::find($request->id);
         return response()->json($category);
     }

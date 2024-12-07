@@ -1,11 +1,5 @@
 @extends('backend.layout')
 @section('backend_contains')
-    @push('backend_css')
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @endpush
-
     <section>
         <div class="container">
 
@@ -35,7 +29,7 @@
                                 <td style="vertical-align: middle;">{{ ++$key }}</td>
                                 <td style="vertical-align: middle;">{{ $category->category_name }}</td>
                                 <td>
-                                    <img style="height: 60px;"
+                                    <img style="height: 60px; "
                                         src="{{ $category->category_img ? $category->category_img : asset('assets/images/category_image.png') }}"
                                         alt="Category Image">
                                 </td>
@@ -93,11 +87,20 @@
                             <input id="edit_category_name" type="text" value="" class="form-control  my-3"
                                 name="category_name">
 
+                            <label for="parent_name">select a parent </label>
+                            <label for="parent_name">Select a parent</label>
+                            <select id="" name="parent_name" class="form-control">
+                                <option selected disabled></option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                @endforeach
+                            </select>
+
 
                             <div class="img_placegolder d-flex justify-content-center my-3">
                                 <label for="category_img" style="cursor: pointer;">
-                                    <img class="img-fluid" src="{{ asset('assets/images/category_image.png') }}"
-                                        alt="">
+                                    <img id="edit_category_img" style="height: 200px;"
+                                        src="{{ asset('assets/images/category_image.png') }}" alt="">
                                 </label>
                                 <input type="file" accept=".png, .jpg, .gif, .jpeg, .webp" hidden id="category_img"
                                     name="category_img">
@@ -116,9 +119,25 @@
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}" />
 @endpush
 
+
 @push('backend_js')
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            // Initialize Select2 when the modal is shown
+            $('#exampleModal').on('shown.bs.modal', function() {
+                $('#parent_name').select2({
+                    placeholder: "Select a parent category",
+                    allowClear: true,
+                });
+            });
+        });
+    </script>
+
 
 
     {{-- CATEGORY SATATUS --}}
@@ -186,53 +205,71 @@
 
 
 
-    {{-- CATEGORY DELETE --}}
     <script>
+        // CATEGORY DELETE 
         $(function() {
             $('.deleteCategory').on('click', function(e) {
                 e.preventDefault();
-                let delete_id = $(this).attr('deleteId')
-                let tr = $(this).closest('tr')
+                let delete_id = $(this).attr('deleteId');
+                let tr = $(this).closest('tr');
 
-                $.ajax({
-                    type: 'GET',
-                    url: "{{ route('admin.category.delete', '') }}/" + delete_id,
-                    data: {
-                        'id': delete_id
-                    },
-                    success: function(responce) {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.onmouseenter = Swal.stopTimer;
-                                toast.onmouseleave = Swal.resumeTimer;
+                // First confirmation dialog
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Second confirmation dialog
+                        Swal.fire({
+                            title: "Confirm Deletion",
+                            text: "Are you really sure you want to delete this category?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Make the AJAX request to delete the category
+                                $.ajax({
+                                    type: 'GET',
+                                    url: "{{ route('admin.category.delete', '') }}/" +
+                                        delete_id,
+                                    data: {
+                                        'id': delete_id
+                                    },
+                                    success: function(response) {
+                                        // Remove the row from the DOM
+                                        tr.remove();
+                                        Swal.fire({
+                                            title: "Deleted!",
+                                            text: "Your category has been deleted.",
+                                            icon: "success"
+                                        });
+                                    },
+                                    error: function(xhr) {
+                                        console.log(xhr);
+                                    }
+                                });
                             }
                         });
-                        Toast.fire({
-                            icon: "error",
-                            title: responce.message
-                        })
-
-
-                        tr.remove()
-                    },
-                    error: function(xhr) {
-                        console.log(xhr);
                     }
-                })
-            })
-        })
+                });
+            });
+        });
+
 
 
 
         //EDIT CATEGORY 
-        $('#editCategory').on('click', function(e) {
+        $(document).on('click', '#editCategory', function(e) {
             e.preventDefault();
-            let edit_id = $(this).attr('data-edit-id')
+            let edit_id = $(this).attr('data-edit-id');
 
             $.ajax({
                 type: 'GET',
@@ -242,10 +279,20 @@
                 },
                 success: function(response) {
                     $('#edit_category_name').val(response.category_name);
-                    console.log(response);
+                    // Check if the image URL is valid
+                    if (response.category_img && response.category_img !== '') {
+                        $('#edit_category_img').attr('src', response.category_img);
+                    } else {
+                        // Set a default image if the category image is not found
+                        $('#edit_category_img').attr('src',
+                            '{{ asset('assets/images/category_image.png') }}');
+                    }
                 },
+                error: function(xhr) {
+                    console.error('Error fetching category data:', xhr);
+                }
+            });
 
-            })
-        })
+        });
     </script>
 @endpush
